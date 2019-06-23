@@ -1,7 +1,6 @@
 TOP ?= ..
 
 DIRS :=
-DIRS += gpu
 DIRS += gator
 DIRS += wifi
 DIRS += bluetooth GP712drv
