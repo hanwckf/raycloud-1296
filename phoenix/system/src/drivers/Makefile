@@ -1,9 +1,9 @@
 TOP ?= ..
 
 DIRS :=
-DIRS += gator
 DIRS += wifi
-DIRS += bluetooth GP712drv
+DIRS += bluetooth
+#DIRS += GP712drv
 
 .PHONY: all clean $(DIRS)
 
