@@ -41,7 +41,7 @@
 
 #define AUDIO_ION_FLAG (ION_FLAG_NONCACHED | ION_FLAG_SCPUACC | ION_FLAG_ACPUACC)
 
-static const struct of_device_id cec_ids[] __initconst = {
+static const struct of_device_id cec_ids[] = {
 	{ .compatible = "Realtek,rtk-cec0", },
 	{},
 	{ .compatible = "Realtek,rtk-cec1", },

@@ -79,8 +79,10 @@ static int  i2c_rtk_xfer(struct i2c_adapter *adap,
 	struct rtk_i2c_handler *handler = i2c_dev->handler;
 	int i = 0;
 	int ret = 0;
+#ifdef CONFIG_ARCH_RTD16xx
 	struct pinctrl *pctrl;
 	struct pinctrl_state *pctrl_state;
+#endif
 
 	RTK_DEBUG("%s\n", __func__);
 

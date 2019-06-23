@@ -115,7 +115,7 @@ static const struct of_device_id rtk_uctrl_match[] = {
 	{}
 };
 
-static struct platform_driver rtk_uctrl_driver = {
+static struct platform_driver rtk_uctrl_driver __initdata = {
 	.probe = rtk_uctrl_probe,
 	.driver = {
 		.name = "rtk-uctrl",

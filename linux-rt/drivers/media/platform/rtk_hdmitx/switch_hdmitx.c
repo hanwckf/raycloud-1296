@@ -288,7 +288,9 @@ EXPORT_SYMBOL(show_hpd_status);
 
 int rtk_hdmitx_switch_suspend(void)
 {
+#if HDMI_RX_SENSE_SUPPORT
 	int ret;
+#endif
 	hdmitx_device_t *pdev;
 
 	pdev = container_of(sdev, hdmitx_device_t, sdev);

@@ -1027,7 +1027,7 @@ void config_dp_related(struct VIDEO_RPC_VOUT_CONFIG_TV_SYSTEM *tv_system)
 {
 	int ret;
 	unsigned int hdmiMode;
-	unsigned int interfaceType;
+	unsigned int interfaceType = 0;
 	struct VIDEO_RPC_VOUT_CONFIG_TV_SYSTEM cur_tv_system;
 
 	if (!hdmi_clk_always_on)

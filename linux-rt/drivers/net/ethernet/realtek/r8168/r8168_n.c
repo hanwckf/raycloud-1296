@@ -22389,7 +22389,7 @@ rtl8168_phy_power_down(struct net_device *dev)
 void debug_print(void __iomem *ioaddr){
 	int i =0;
 	for (i = 0;i < 1000; i=i+4) {
-		printk("%d: 0x%x\n",i,RTL_R32(i));
+		printk("%d: 0x%lx\n",i,RTL_R32(i));
 	}
 
 }

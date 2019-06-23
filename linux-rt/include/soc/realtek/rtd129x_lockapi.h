@@ -98,16 +98,16 @@ enum lockapi_errortype {
 
 void lockapi_show_status( void );
 
-int _rtk_lockapi_trylock( unsigned long * pflags, char * log_msg );
-int _rtk_lockapi_lock( unsigned long * pflags, char * log_msg );
-int _rtk_lockapi_unlock( unsigned long flags, char * log_msg );
+int _rtk_lockapi_trylock( unsigned long * pflags, const char * log_msg );
+int _rtk_lockapi_lock( unsigned long * pflags, const char * log_msg );
+int _rtk_lockapi_unlock( unsigned long flags, const char * log_msg );
 
-int _rtk_lockapi_trylock2( unsigned long * pflags, char * log_msg );
-int _rtk_lockapi_lock2( unsigned long * pflags, char * log_msg );
-int _rtk_lockapi_unlock2( unsigned long flags, char * log_msg );
+int _rtk_lockapi_trylock2( unsigned long * pflags, const char * log_msg );
+int _rtk_lockapi_lock2( unsigned long * pflags, const char * log_msg );
+int _rtk_lockapi_unlock2( unsigned long flags, const char * log_msg );
 
-int _rtk_lockapi_trylock3( unsigned long * pflags, char * log_msg, int log_line );
-int _rtk_lockapi_lock3( unsigned long * pflags, char * log_msg, int log_line );
-int _rtk_lockapi_unlock3( unsigned long flags, char * log_msg, int log_line );
+int _rtk_lockapi_trylock3( unsigned long * pflags, const char * log_msg, int log_line );
+int _rtk_lockapi_lock3( unsigned long * pflags, const char * log_msg, int log_line );
+int _rtk_lockapi_unlock3( unsigned long flags, const char * log_msg, int log_line );
 
 #endif //_RTD129x_LOCKAPI_H_

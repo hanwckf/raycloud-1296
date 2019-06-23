@@ -1768,9 +1768,9 @@ static void free_logo_memory(void *data)
 
 static int do_free_logo(void *data)
 {
-	int time_out = 120;;
-	struct sched_param param = {.sched_priority = MAX_RT_PRIO-2};
-
+	int time_out = 120;
+	struct sched_param param;
+	param.sched_priority = MAX_RT_PRIO - 2;
 	sched_setscheduler(current, SCHED_FIFO, &param);
 	while (!kthread_should_stop() && time_out--) {
 		msleep(1000);
@@ -1787,7 +1787,6 @@ static void memblock_init_free_logo_kthread(void)
 	free_logo_task = kthread_create(do_free_logo, NULL, "free_logo");
 	if (IS_ERR(free_logo_task)) {
 		printk(KERN_ERR "create free logo kthread failed\n");
-		return 0;
 	}
 	kthread_bind(free_logo_task, 0);
 	wake_up_process(free_logo_task);
@@ -1830,9 +1829,9 @@ static ssize_t memblock_debug_write(struct file *file, const char __user *buf,
 			free_logo_memory(NULL);
 		}
 		if(count >= 8 && !strncmp(buf, "logoinfo", 8)) {
-			printk(KERN_ERR "cur start: 0x%llx, size: 0x%llx\n",
+			printk(KERN_ERR "cur start: 0x%lx, size: 0x%lx\n",
 				logo_start_addr, logo_size);
-			printk(KERN_ERR "bak start: 0x%llx, size: 0x%llx\n",
+			printk(KERN_ERR "bak start: 0x%lx, size: 0x%lx\n",
 				logo_start_addr_bak, logo_size_bak);
 		}
 	}
@@ -1862,7 +1861,7 @@ static int __init memblock_init_debugfs(void)
 		if (memblock_is_memory(logo_start_addr))
 			memblock_init_free_logo_kthread();
 		else
-			pr_info("logo:0x%llx not in memory region\n", logo_start_addr);
+			pr_info("logo:0x%lx not in memory region\n", logo_start_addr);
 	}
 #endif
 	return 0;

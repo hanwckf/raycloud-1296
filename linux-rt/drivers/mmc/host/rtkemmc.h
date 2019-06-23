@@ -518,7 +518,7 @@ static const char *const clk_tlb[8] = {
 	"24MHz"
 };
 
-static const u32 const clk_2_hz[8] = {
+static const u32 clk_2_hz[8] = {
 	10000000,
 	12000000,
 	15000000,
@@ -530,17 +530,17 @@ static const u32 const clk_2_hz[8] = {
 };
 
 /* data read cmd */
-static const u8 const opcode_r_type[16] = {
+static const u8 opcode_r_type[16] = {
     0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,0
 };
 
 /* data write cmd */
-static const u8 const opcode_w_type[16] = {
+static const u8 opcode_w_type[16] = {
     1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0
 };
 
 /* data xfer cmd */
-static const u8 const opcode_d_type[16] = {
+static const u8 opcode_d_type[16] = {
     1,1,1,0,0,1,1,0,0,1,1,0,1,1,1,0
 };
 

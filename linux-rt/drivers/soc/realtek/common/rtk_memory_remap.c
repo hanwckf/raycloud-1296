@@ -227,7 +227,7 @@ void __init rtk_mem_remap_of_init_by_DT(struct reserved_mem *rmem, int rmem_coun
 	}
 }
 
-static void __init rsvmem_remap_setup(struct reserved_mem *rmem)
+static int __init rsvmem_remap_setup(struct reserved_mem *rmem)
 {
 #if 1
 	printk(MYDBG_LEVEL VT100_LIGHT_RED "%s %d, not remap %s now"
@@ -236,6 +236,7 @@ static void __init rsvmem_remap_setup(struct reserved_mem *rmem)
 	// can not remap due to mm not ready
 	rsvmem_remap(rmem);
 #endif
+	return 0;
 }
 
 RESERVEDMEM_OF_DECLARE(rsvmem_remap, "rsvmem-remap", rsvmem_remap_setup);

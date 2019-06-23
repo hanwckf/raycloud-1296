@@ -369,8 +369,8 @@ struct page * __meminit sparse_mem_map_populate(unsigned long pnum, int nid)
 		unsigned long start_phy;
 		unsigned long end_phy;
 
-		printk("old: start 0x%llx", start);
-		printk("old: end   0x%llx", end);
+		printk("old: start 0x%lx", start);
+		printk("old: end   0x%lx", end);
 
 		PMD_lower = pnum<<3;
 		PMD_uppder = PMD_lower+8;
@@ -379,8 +379,8 @@ struct page * __meminit sparse_mem_map_populate(unsigned long pnum, int nid)
 			memblock.memory.regions[memblock.memory.cnt-1].size +
 			PMD_MEM_SIZE-1) / PMD_MEM_SIZE;
 
-		printk("\033[1;33m" "PMD_start %d" "\033[m\n", PMD_start);
-		printk("\033[1;33m" "PMD_end %d" "\033[m\n", PMD_end);
+		printk("\033[1;33m" "PMD_start %ld" "\033[m\n", PMD_start);
+		printk("\033[1;33m" "PMD_end %ld" "\033[m\n", PMD_end);
 
 		if(PMD_start > PMD_lower) { /* not fall in valid range */
 			start = (unsigned long)(map +
@@ -395,8 +395,8 @@ struct page * __meminit sparse_mem_map_populate(unsigned long pnum, int nid)
 		start_phy = (pnum * PAGES_PER_SECTION) << PAGE_SHIFT;
 		end_phy = ((pnum+1) * PAGES_PER_SECTION) << PAGE_SHIFT;
 
-		printk("updated: start 0x%llx", start);
-		printk("updated: end   0x%llx", end);
+		printk("updated: start 0x%lx", start);
+		printk("updated: end   0x%lx", end);
 	}
 #endif
 	if (vmemmap_populate(start, end, nid))

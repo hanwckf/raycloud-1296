@@ -145,7 +145,7 @@ int RTK_usb_reprobe_usb_storage(struct usb_device *udev)
 				desc = &intf->cur_altsetting->desc;
 
 				dev_info(&udev->dev , "bInterfaceClass = %d "
-					    "(jiffies 0x%2x = %d ms)\n",  desc->bInterfaceClass,
+					    "(jiffies 0x%2lx = %d ms)\n",  desc->bInterfaceClass,
 					    jiffies - INITIAL_JIFFIES,
 					    jiffies_to_msecs(jiffies - INITIAL_JIFFIES));
 				if (desc->bInterfaceClass == USB_CLASS_MASS_STORAGE) {
@@ -160,7 +160,7 @@ int RTK_usb_reprobe_usb_storage(struct usb_device *udev)
 			    udev->descriptor.bDeviceClass == USB_CLASS_MASS_STORAGE)) {
 			msleep(100);
 			dev_info(&udev->dev , "%s unbind-probe dev_name = %s "
-				    "(jiffies= 0x%2x = %d ms)\n", __func__,
+				    "(jiffies= 0x%2lx = %d ms)\n", __func__,
 				    dev_name(&udev->dev), jiffies - INITIAL_JIFFIES,
 				    jiffies_to_msecs(jiffies - INITIAL_JIFFIES));
 			RTK_usb_unbind_device(&udev->dev);
@@ -173,7 +173,7 @@ int RTK_usb_reprobe_usb_storage(struct usb_device *udev)
 			}
 
 			dev_info(&udev->dev , "%s bind-probe dev_name = %s "
-				    "(jiffies= 0x%2x = %d ms)\n", __func__,
+				    "(jiffies= 0x%2lx = %d ms)\n", __func__,
 				    dev_name(&udev->dev), jiffies - INITIAL_JIFFIES,
 				    jiffies_to_msecs(jiffies - INITIAL_JIFFIES));
 			RTK_usb_probe_device(&udev->dev);

@@ -1150,7 +1150,6 @@ static int mmc_select_hs_ddr(struct mmc_card *card)
 static int mmc_select_ddr50(struct mmc_card *card)
 {
 	int err = 0;
-	u8 val;
 
 	err = __mmc_switch(card, EXT_CSD_CMD_SET_NORMAL,
 				EXT_CSD_HS_TIMING, EXT_CSD_TIMING_HS,
@@ -1286,10 +1285,12 @@ static int mmc_select_hs400(struct mmc_card *card)
 #endif
 	return 0;
 
+#ifndef CONFIG_MMC_RTK_EMMC
 out_err:
 	pr_err("%s: %s failed, error %d\n", mmc_hostname(card->host),
 	       __func__, err);
 	return err;
+#endif
 }
 
 int mmc_hs200_to_hs400(struct mmc_card *card)
@@ -1601,6 +1602,7 @@ bus_speed:
 int rtkemmc_select_timing(struct mmc_card *card)
 {
         mmc_select_timing(card);
+		return 0;
 }
 EXPORT_SYMBOL(rtkemmc_select_timing);
 #endif
@@ -1645,6 +1647,7 @@ static int mmc_hs200_tuning(struct mmc_card *card)
 int rtkemmc_hs200_tuning(struct mmc_card *card)
 {
          mmc_hs200_tuning(card);
+		 return 0;
 }
 EXPORT_SYMBOL(rtkemmc_hs200_tuning);
 #endif

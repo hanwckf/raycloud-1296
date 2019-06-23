@@ -1031,7 +1031,7 @@ static inline void early_init_dt_check_for_cma(unsigned long node)
 		logo_size_bak =
 			logo_size = of_read_number(prop+1, 1);
 	}
-	printk(KERN_ERR "\033[1;33m" "DT: logo_start_addr 0x%llx, size 0x%llx" "\033[m\n",
+	printk(KERN_ERR "\033[1;33m" "DT: logo_start_addr 0x%lx, size 0x%lx" "\033[m\n",
 		logo_start_addr, logo_size);
 
 	prop = of_get_flat_dt_prop(node, "cma-region-enable", &len);

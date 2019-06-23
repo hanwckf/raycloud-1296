@@ -1857,7 +1857,7 @@ static void parse_hdmi_forum_vsdb(struct sink_capabilities_t *sink_cap, const u8
 
 static void parse_hdmi_audio_db(struct sink_capabilities_t *sink_cap, const u8 *db)
 {
-	unsigned char *sad;/* Short Audio Descriptor */
+	const unsigned char *sad;/* Short Audio Descriptor */
 	unsigned char sad_count;
 	unsigned char len;
 	unsigned char i;

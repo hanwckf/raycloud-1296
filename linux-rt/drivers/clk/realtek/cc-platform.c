@@ -64,7 +64,7 @@ static const struct dev_pm_ops rtk_cc_pm_ops = {
 	.resume_noirq = rtk_cc_resume,
 };
 
-static int rtk_cc_probe(struct platform_device *pdev)
+static int __init rtk_cc_probe(struct platform_device *pdev)
 {
 	struct cc_desc *ccd;
 	struct device *dev = &pdev->dev;
@@ -115,7 +115,7 @@ static const struct of_device_id rtk_cc_match[] = {
 	{}
 };
 
-static struct platform_driver rtk_cc_driver = {
+static struct platform_driver rtk_cc_driver __initdata = {
 	.probe = rtk_cc_probe,
 	.driver = {
 		.name = "rtk-cc",

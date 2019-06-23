@@ -347,7 +347,6 @@ done:
 static void xhci_dbgfs_print_registers(struct xhci_hcd *xhci,
 		char **nextp, unsigned *sizep)
 {
-	unsigned		inc;
 	unsigned		size = *sizep;
 	char			*next = *nextp;
 
@@ -905,7 +904,7 @@ static ssize_t fill_ep_ring_buffer(struct debug_buffer *buf)
 
 	spin_unlock_irqrestore (&xhci->lock, flags);
 
-	inc = scnprintf(next, size, "Print Done (buffer use %d/%d bytes)..\n",
+	inc = scnprintf(next, size, "Print Done (buffer use %ld/%ld bytes)..\n",
 			buf->alloc_size - size, buf->alloc_size);
 	TO_NEXT(next, size, inc);
 
@@ -919,7 +918,6 @@ static ssize_t fill_event_ring_buffer(struct debug_buffer *buf)
 	unsigned long		flags;
 	unsigned		inc, size;
 	char			*next;
-	int i,j;
 
 	hcd = bus_to_hcd(buf->bus);
 	xhci = hcd_to_xhci (hcd);
@@ -948,7 +946,7 @@ static ssize_t fill_event_ring_buffer(struct debug_buffer *buf)
 
 	spin_unlock_irqrestore (&xhci->lock, flags);
 
-	inc = scnprintf(next, size, "Print Done (buffer use %d/%d bytes)..\n",
+	inc = scnprintf(next, size, "Print Done (buffer use %ld/%ld bytes)..\n",
 			buf->alloc_size - size, buf->alloc_size);
 	TO_NEXT(next, size, inc);
 
@@ -962,7 +960,6 @@ static ssize_t fill_cmd_ring_buffer(struct debug_buffer *buf)
 	unsigned long		flags;
 	unsigned		inc, size;
 	char			*next;
-	int i,j;
 
 	hcd = bus_to_hcd(buf->bus);
 	xhci = hcd_to_xhci (hcd);
@@ -986,7 +983,7 @@ static ssize_t fill_cmd_ring_buffer(struct debug_buffer *buf)
 
 	spin_unlock_irqrestore (&xhci->lock, flags);
 
-	inc = scnprintf(next, size, "Print Done (buffer use %d/%d bytes)..\n",
+	inc = scnprintf(next, size, "Print Done (buffer use %ld/%ld bytes)..\n",
 			buf->alloc_size - size, buf->alloc_size);
 	TO_NEXT(next, size, inc);
 
@@ -1000,7 +997,7 @@ static ssize_t fill_context_buffer(struct debug_buffer *buf)
 	unsigned long		flags;
 	unsigned		inc, size;
 	char			*next;
-	int i,j;
+	int i;
 	struct xhci_container_ctx *in_ctx, *out_ctx;
 
 	hcd = bus_to_hcd(buf->bus);
@@ -1036,7 +1033,7 @@ static ssize_t fill_context_buffer(struct debug_buffer *buf)
 	}
 	spin_unlock_irqrestore (&xhci->lock, flags);
 
-	inc = scnprintf(next, size, "Print Done (buffer use %d/%d bytes)..\n",
+	inc = scnprintf(next, size, "Print Done (buffer use %ld/%ld bytes)..\n",
 			buf->alloc_size - size, buf->alloc_size);
 	TO_NEXT(next, size, inc);
 
@@ -1050,8 +1047,6 @@ static ssize_t fill_registers_buffer(struct debug_buffer *buf)
 	unsigned long		flags;
 	unsigned		inc, size;
 	char			*next;
-	int i,j;
-	struct xhci_container_ctx *in_ctx, *out_ctx;
 
 	hcd = bus_to_hcd(buf->bus);
 	xhci = hcd_to_xhci (hcd);
@@ -1070,7 +1065,7 @@ static ssize_t fill_registers_buffer(struct debug_buffer *buf)
 
 	spin_unlock_irqrestore (&xhci->lock, flags);
 
-	inc = scnprintf(next, size, "Print Done (buffer use %d/%d bytes)..\n",
+	inc = scnprintf(next, size, "Print Done (buffer use %ld/%ld bytes)..\n",
 			buf->alloc_size - size, buf->alloc_size);
 	TO_NEXT(next, size, inc);
 
@@ -1149,7 +1144,7 @@ static ssize_t fill_dump_all_buffer(struct debug_buffer *buf)
 
 	spin_unlock_irqrestore (&xhci->lock, flags);
 
-	inc = scnprintf(next, size, "Print Done (buffer use %d/%d bytes)..\n",
+	inc = scnprintf(next, size, "Print Done (buffer use %ld/%ld bytes)..\n",
 			buf->alloc_size - size, buf->alloc_size);
 	TO_NEXT(next, size, inc);
 
@@ -1301,8 +1296,6 @@ static int debug_ep_ring_open(struct inode *inode, struct file *file)
 static ssize_t debug_set_slot_write(struct file *file,
 		const char __user *ubuf, size_t count, loff_t *ppos)
 {
-	static struct dentry *reg_file = NULL;
-	struct debug_buffer *dbuf = file->private_data;
 	char			buf[32];
 	int 			ret;
 

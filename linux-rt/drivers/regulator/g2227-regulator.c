@@ -96,7 +96,7 @@ enum {
 };
 
 /* reg_field */
-static const struct reg_field regs[G2227_REG_FIELD_MAX] __initconst = {
+static const struct reg_field regs[G2227_REG_FIELD_MAX] = {
 	[G2227_REG_FIELD_LPOFF_TO_DO] = REG_FIELD(0x02, 7, 7),
 	[G2227_REG_FIELD_TIME_IT]     = REG_FIELD(0x02, 4, 5),
 	[G2227_REG_FIELD_TIME_LP]     = REG_FIELD(0x02, 2, 3),

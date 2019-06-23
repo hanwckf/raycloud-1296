@@ -1544,8 +1544,8 @@ int rtk_sdmmc_cpu_wait(char* drv_name, struct rtk_sdmmc_host *rtk_host, u8 cmdco
 					readb(sdmmc_base + SD_STATUS2),
 					readb(sdmmc_base + SD_BUS_STATUS));
 
-		if (rtk_host!=NULL && rtk_host->mrq!=NULL && rtk_host->mrq->cmd!=NULL)
-			printk(KERN_ERR "%s: error opcode = %d\n", __func__, rtk_host->mrq->cmd->opcode);
+			if (rtk_host!=NULL && rtk_host->mrq!=NULL && rtk_host->mrq->cmd!=NULL)
+				printk(KERN_ERR "%s: error opcode = %d\n", __func__, rtk_host->mrq->cmd->opcode);
 			break;
 		}
 	}
