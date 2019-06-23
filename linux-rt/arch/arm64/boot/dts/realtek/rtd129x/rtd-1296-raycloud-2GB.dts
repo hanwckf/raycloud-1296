@@ -95,7 +95,7 @@
 	};
 
 	power-management@0 {
-		wakeup-gpio-enable = <1>, <1>;
+		wakeup-gpio-enable = <0>, <0>;
 		wakeup-gpio-list = <&rtk_iso_gpio 21 0 0>,
 			<&rtk_iso_gpio 26 0 0>;
 		wakeup-gpio-activity =<0>, <0>;
