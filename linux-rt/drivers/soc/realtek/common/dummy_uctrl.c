@@ -89,7 +89,7 @@ static const struct file_operations rtk_uctrl_fops = {
 
 static struct miscdevice mdev;
 
-static int __init rtk_uctrl_probe(struct platform_device *pdev)
+static int rtk_uctrl_probe(struct platform_device *pdev)
 {
 	int ret;
 	struct device *dev = &pdev->dev;
@@ -115,7 +115,7 @@ static const struct of_device_id rtk_uctrl_match[] = {
 	{}
 };
 
-static struct platform_driver rtk_uctrl_driver __initdata = {
+static struct platform_driver rtk_uctrl_driver = {
 	.probe = rtk_uctrl_probe,
 	.driver = {
 		.name = "rtk-uctrl",

@@ -114,40 +114,23 @@
 
 	sdio@98010A00 {
 		compatible = "Realtek,rtk1295-sdio";
-		status = "disabled";
+		status = "okay";
 	};
 
 	sdmmc@98010400 {
 		compatible = "Realtek,rtk1295-sdmmc";
-		status = "okay"; 
-		/* status = "disabled"; */
+		status = "okay";
 	};
 
 	emmc@98012000 {
 		compatible = "Realtek,rtk1295-emmc";
-		pddrive_nf_s0 = <0x77 0x77 0x77 0x77 0x77>;
-		pddrive_nf_s2 = <0xbb 0xbb 0xbb 0xbb 0xbb>;
-		phase_tuning = <1 1>; /* BPI arg0: tx tuning switch, arg1: rx tuning switch*/
+		pddrive_nf_s0 = <0x1 0x77 0x77 0x77 0x33>;
+		pddrive_nf_s2 = <0x1 0xbb 0xbb 0xbb 0x33>;
+		phase_tuning = <0x0 0x0>;
 	};
 
 	dptx@9803D000 {
-		status = "okay"; 
-		/* status = "disabled"; */
-	};
-
-	rtk_avcpu {
-		compatible = "Realtek,rtk-avcpu";
-		#address-cells = <1>;
-		#size-cells = <1>;
-		ranges;
-
-		crt@0 {
-			reg = <0x98000000 0x200000>;
-		};
-
-		rpc@0 {
-			reg = <RPC_COMM_PHYS RPC_COMM_SIZE>;
-		};
+		status = "disabled";
 	};
 
 	power-management@0 {

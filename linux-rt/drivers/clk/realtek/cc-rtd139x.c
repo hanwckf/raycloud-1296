@@ -440,7 +440,7 @@ static struct clk_composite_init_data clk_ve2_bpu_init = {
 		CLK_SET_RATE_NO_REPARENT,
 };
 
-static __initdata struct clk_hw *clk_reg_list[] = {
+static struct clk_hw *clk_reg_list[] = {
 	[CC_PLL_SCPU]   = &__clk_pll_div_hw(&pll_scpu),
 	[CC_PLL_BUS]    = &__clk_pll_div_hw(&pll_bus),
 	[CC_PLL_BUS_H]  = &__clk_pll_div_hw(&pll_bus_h),
@@ -454,14 +454,14 @@ static __initdata struct clk_hw *clk_reg_list[] = {
 	[CC_CLK_SYSH] = &clk_sysh.hw,
 };
 
-static  __initdata struct clk_composite_init_data *composite_clks[] = {
+static struct clk_composite_init_data *composite_clks[] = {
 	[CC_CLK_GPU] = &clk_gpu_init,
 	[CC_CLK_VE1] = &clk_ve1_init,
 	[CC_CLK_VE2] = &clk_ve2_init,
 	[CC_CLK_VE2_BPU] = &clk_ve2_bpu_init,
 };
 
-int __init cc_init_clocks(struct device *dev)
+int cc_init_clocks(struct device *dev)
 {
 	struct cc_desc *ccd = dev_get_drvdata(dev);
 	int i;
