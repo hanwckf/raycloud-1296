@@ -84,5 +84,9 @@
 			gpios = <&rtk_misc_gpio 55 1 1>;
 		};
 	};
+
+	rtc@9801B600 {
+		status = "disabled";
+	};
 };
 
