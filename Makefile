@@ -4,6 +4,7 @@ include config.mk
 
 CUR_DIR = $(shell pwd)
 KDIR = linux-rt
+KVER = 4.9.119-raycloud
 DRIVERS_SRC = phoenix/system/src/drivers
 STAGE_DIR = $(CUR_DIR)/output
 
@@ -26,6 +27,7 @@ modules-prepare: kernel-config
 
 kernel-modules: kernel-config modules-prepare
 	mkdir -p $(STAGE_DIR)
+	rm -rf $(STAGE_DIR)/lib
 	$(MAKE_ARCH) -C $(KDIR) -j$(J) modules
 	$(MAKE_ARCH) -C $(KDIR) -j$(J) INSTALL_MOD_PATH=$(STAGE_DIR) modules_install
 
@@ -34,7 +36,7 @@ drivers: kernel-config modules-prepare
 
 drivers-install: drivers
 	$(MAKE_ARCH) -C $(DRIVERS_SRC) install
-	mkdir -p $(STAGE_DIR)/lib/modules/4.9.119-raycloud/kernel/extra
+	mkdir -p $(STAGE_DIR)/lib/modules/$(KVER)/kernel/extra
 	cp -raf phoenix/system/src/bin/* $(STAGE_DIR)/lib/modules/4.9.119-raycloud/kernel/extra
 
 drivers-clean:
@@ -42,6 +44,7 @@ drivers-clean:
 
 modules:kernel-modules drivers-install
 	$(MAKE_ARCH) -C $(KDIR) -j$(J) INSTALL_MOD_PATH=$(STAGE_DIR) _depmod
+	rm -f $(STAGE_DIR)/lib/modules/$(KVER)/build $(STAGE_DIR)/lib/modules/$(KVER)/source
 
 kernel-headers: kernel-config
 	$(MAKE_ARCH) -C $(KDIR) -j$(J) INSTALL_HDR_PATH=$(STAGE_DIR) headers_install
