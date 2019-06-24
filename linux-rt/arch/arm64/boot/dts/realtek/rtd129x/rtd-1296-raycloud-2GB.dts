@@ -68,28 +68,6 @@
 		};
 	};
 
-	/*
-	 * pddrive_nf0, pddrive_nf1, pddrive_nf2, pddrive_nf3, pddrive_nf4 ; for sdr50
-	 * pddrive_nf0, pddrive_nf1, pddrive_nf2, pddrive_nf3, pddrive_nf4 ; for hs200
-	 */
-
-	sdio@98010A00 {
-		compatible = "Realtek,rtk1295-sdio";
-		status = "okay";
-	};
-
-	sdmmc@98010400 {
-		compatible = "Realtek,rtk1295-sdmmc";
-		status = "okay";
-	};
-
-	emmc@98012000 {
-		compatible = "Realtek,rtk1295-emmc";
-		pddrive_nf_s0 = <0x1 0x77 0x77 0x77 0x33>;
-		pddrive_nf_s2 = <0x1 0xbb 0xbb 0xbb 0x33>;
-		phase_tuning = <0x0 0x0>;
-	};
-
 	dptx@9803D000 {
 		status = "disabled";
 	};
@@ -99,6 +77,12 @@
 		wakeup-gpio-list = <&rtk_iso_gpio 21 0 0>,
 			<&rtk_iso_gpio 26 0 0>;
 		wakeup-gpio-activity =<0>, <0>;
+	};
+
+	sata@9803F000 {
+		sata-port@1 {
+			gpios = <&rtk_misc_gpio 55 1 1>;
+		};
 	};
 };
 
