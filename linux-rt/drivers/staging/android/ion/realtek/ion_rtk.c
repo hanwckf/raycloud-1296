@@ -128,7 +128,7 @@ static int rtk_ion_get_phy_info(struct ion_client *client, struct RTK_ION_IOC_PH
         ion_phys_addr_t addr;
         size_t len;
 
-        handle = ion_handle_get_by_id(client, phyInfo->handle);
+        handle = ion_handle_get_by_id_nolock(client, phyInfo->handle);
         if (IS_ERR(handle)) {
             ret = (int) PTR_ERR(handle);
             break;
