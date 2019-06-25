@@ -26,8 +26,7 @@ all: kernel modules
 	mkdir -p $(OUTPUT_DIR)
 	cp -f $(KDIR)/arch/arm64/boot/Image $(OUTPUT_DIR)
 	cp -f $(KDIR)/arch/arm64/boot/dts/realtek/rtd129x/$(DTB) $(OUTPUT_DIR)
-	tar cf $(OUTPUT_DIR)/modules.tar -C $(STAGE_DIR) lib
-	xz -f -T0 $(OUTPUT_DIR)/modules.tar
+	tar cJf $(OUTPUT_DIR)/modules.tar.xz -C $(STAGE_DIR) lib
 
 kernel-config:
 	cp -f $(KDIR)/$(KERNEL_CONFIG) $(KDIR)/.config
